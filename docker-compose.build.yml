@@ -2,7 +2,7 @@ version: '3.7'
 services:
   selenium_chrome:
     image: selenium/node-chrome:3.141.59-vanadium
-    container_name: dockerkvs_selenium_chrome
+    # container_name: dockerkvs_selenium_chrome
     depends_on:
       - selenium_hub
     environment:
@@ -10,7 +10,7 @@ services:
       - HUB_PORT=4444
   selenium_hub:
     image: selenium/hub:3.141.59-vanadium
-    container_name: dockerkvs_selenium_hub
+    # container_name: dockerkvs_selenium_hub
     ports:
       - 4444:4444
   webtest:
@@ -18,7 +18,7 @@ services:
       context: ./webtest
       dockerfile: Dockerfile
     image: dockerkvs_webtest  
-    container_name: dockerkvs_webtest
+    # container_name: dockerkvs_webtest
     depends_on:
       - web
       - selenium_hub
@@ -35,7 +35,7 @@ services:
       context: ./apptest
       dockerfile: Dockerfile
     image: dockerkvs_apptest
-    container_name: dockerkvs_apptest
+    # container_name: dockerkvs_apptest
     depends_on:
       - app
     tty: true
@@ -48,7 +48,7 @@ services:
       context: ./web
       dockerfile: Dockerfile
     image: dockerkvs_web
-    container_name: dockerkvs_web
+    # container_name: dockerkvs_web
     restart: "no"
     depends_on:
       - app
@@ -62,7 +62,7 @@ services:
       context: ./app
       dockerfile: Dockerfile
     image: dockerkvs_app
-    container_name: dockerkvs_app
+    # container_name: dockerkvs_app
     restart: "no"
     depends_on:
       - db
@@ -73,7 +73,7 @@ services:
   db:
     image: redis:5.0.6-alpine3.10
     restart: "no"
-    container_name: dockerkvs_db
+    # container_name: dockerkvs_db
     volumes:
       - dockerkvs_redis_volume:/data
       
